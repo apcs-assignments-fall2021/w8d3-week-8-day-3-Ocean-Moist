@@ -99,8 +99,7 @@ public class Rational
         int gcf = gcf(this.numerator, this.denominator);
         int nume = this.numerator/gcf;
         int denom = this.denominator/gcf;
-        Rational x = new Rational(nume, denom);
-        return x;
+        return new Rational(nume, denom);
     }
 
     // This is a non-static version of simplify that **changes** the original Rational
@@ -153,7 +152,7 @@ public class Rational
     // Rational r = new Rational(3, 8);
     // r.changeToEquivalentFraction(64); // r is now 24/64 (which is equivalent to 3/8)
     public void changeToEquivalentFraction(int newDenominator) {
-        this.numerator *= newDenominator/this.denominator;
+        this.numerator = (this.numerator*newDenominator)/this.denominator;
         this.denominator = newDenominator;
     }
 
@@ -165,7 +164,7 @@ public class Rational
     // Rational r = new Rational(-3,4);
     // System.out.println(r.isNegative()) // true
     public boolean isNegative() { 
-        return (this.denominator*this.denominator) < 0; // YOUR CODE HERE
+        return this.denominator*this.numerator < 0; // YOUR CODE HERE
     }
 
     // Calculates the reciprocal of a Rational number.
@@ -191,7 +190,7 @@ public class Rational
     // Rational r = new Rational(3, 2);
     // r.round(); // r is now 2/1
     public void round() {
-    this.numerator = (int) (this.numerator/this.denominator);
+    this.numerator = (int) Math.round((double) this.numerator/this.denominator);
     this.denominator = 1;
     }
 }
